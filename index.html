@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Steem Multiple Authority Manager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Steem Multiple Authority Manager</h1>
+
+    <p id="welcome" class="h5 mt-5 mb-5 text-center">Please enter your Steem account.</p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-xl-6">
+        <form id="login" class="mt-3 mb-5">
+          <div class="form-group">
+            <label for="username" class="sr-only">Username</label>
+            <div class="input-group">
+              <input type="text" id="username" name="username" class="form-control" placeholder="Steem Username">
+              <div class="input-group-append">
+                <button class="btn btn-success">Login</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 mt-3 text-center">
+        <a href="multiauth-account.html" class="box turquoise">Multiple Authority Account</a>
+        <p>Generate multiple authority for your account.</p>
+      </div>
+      <div class="col-md-3 mt-3 text-center">
+        <a href="generate-transaction.html" class="box green">
+          Generate Transaction
+        </a>
+        <p>Generate transaction to be signed by multiple parties.</p>
+      </div>
+      <div class="col-md-3 mt-3 text-center">
+        <a href="sign-transaction.html" class="box red">Sign Transaction</a>
+        <p>Sign an already generated transaction.</p>
+      </div>
+      <div class="col-md-3 mt-3 text-center">
+        <a href="broadcast-transaction.html" class="box purple">Broadcast Transaction</a>
+        <p>Broadcast a signed transaction to the blockchain.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p class="small">Disclaimer: I cannot be held responsible for any misuse of this tool or any harm that may occur to your account by using this tool.</p>
+      <p>Brought to you by <a href="https://steemit.com/@reazuliqbal">@reazuliqbal</a></p>
+    </footer>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>

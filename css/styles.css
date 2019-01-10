@@ -1,0 +1,50 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+label {
+    font-weight: 500;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #fff;
+    font-size: 28px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.box:hover,
+.box:focus,
+.boc:active {
+    text-decoration: none;
+    color: #fff;
+}
+
+.turquoise {
+    background-color: #58C9B9;
+}
+.red {
+    background-color: #E53A40;
+}
+.green {
+    background-color: #75D701;
+}
+.purple {
+  background-color: #6C49B8;
+}
+
+#feedback {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.footer {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 1px solid rgba(0,0,0,.1);
+  text-align: center;
+}
