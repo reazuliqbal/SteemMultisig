@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Steem Multiple Authority Manager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Sign Transaction</h1>
+    <p id="welcome" class="h5 mt-5 mb-5 text-center"></p>
+
+    <div class="alert" id="feedback"></div>
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <form method="post" id="sign-transaction">
+          <div class="form-group">
+            <label for="transaction">Transaction</label>
+            <textarea type="text" name="transaction" id="transaction" class="form-control" rows="10"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="wif">WIF</label>
+            <input type="password" name="wif" id="wif" class="form-control" required>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Sign</button>
+        </form>
+      </div>
+
+      <div class="col-md-6 mt-4">
+        <div id="preview">
+
+          <h5 class="h5 text-uppercase">Operation(s)</h5><hr>
+          <div id="operations" class="mb-3">
+          </div>
+
+          <h5 class="h5 text-uppercase">Potential Signers</h5><hr>
+          <div id="signers" class="mb-3">
+          </div>
+
+          <h5 class="h5 text-uppercase">Already Signed</h5><hr>
+          <div id="signed" class="mb-3">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="mt-5">
+          <label for="">Transaction</label>
+          <textarea id="output" class="form-control" rows="10"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p class="small">Disclaimer: I cannot be held responsible for any misuse of this tool or any harm that may occur to your account by using this tool.</p>
+      <p>Brought to you by <a href="https://steemit.com/@reazuliqbal">@reazuliqbal</a></p>
+    </footer>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
