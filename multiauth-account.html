@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Steem Multiple Authority Manager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Steem Multiple Authority</h1>
+    <p id="welcome" class="h5 mt-5 mb-5 text-center"></p>
+
+    <div class="row">
+      <div class="offset-md-2 col-md-8">
+
+        <div class="alert" id="feedback"></div>
+
+        <form id="gen-multi-auth">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="authority">Authority</label>
+            <select name="authority" id="authority" class="form-control">
+              <option value="posting">Posting</option>
+              <option value="active">Active</option>
+              <option value="owner">Owner</option>
+            </select>
+          </div>
+
+          <div id="keys">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-8">
+                  <label for="publickey">Public Key</label>
+                  <input type="text" name="publickeys[]" class="form-control" required>
+                </div>
+                <div class="col-sm-4">
+                  <label for="weight">Weight</label>
+                  <input type="number" name="weights[]" class="form-control" min="1" required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-sm btn-warning" id="add-key-field">Add</button>
+            <button class="btn btn-sm btn-danger" id="remove-key-field">Remove</button>
+          </div>
+
+          <div class="form-group">
+            <label for="threshold">Weight Threshold</label>
+            <input type="number" name="threshold" id="threshold" class="form-control" min="1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="wif">Active Key or Password</label>
+            <input type="password" name="wif" id="wif" class="form-control" required>
+            <p class="form-text text-muted">Please enter master password only when you are changing owner authority.</p>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+
+        <hr>
+
+        <form id="gen-key">
+          <h4>Generate Public and Private Keys</h4>
+          <div class="form-group">
+            <label for="seed">Seed String</label>
+            <input type="text" name="seed" id="seed" class="form-control">
+            <p class="form-text text-muted">If left blank a random string will be generated. You should have this in case you forget the private key.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="private-key">Private Key</label>
+            <input type="text" name="private-key" id="private-key" class="form-control" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="public-key">Public Key</label>
+            <input type="text" name="public-key" id="public-key" class="form-control" readonly>
+          </div>
+
+          <button class="btn btn-primary" id="gen-new-key">Generate New Key</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p class="small">Disclaimer: I cannot be held responsible for any misuse of this tool or any harm that may occur to your account by using this tool.</p>
+      <p>Brought to you by <a href="https://steemit.com/@reazuliqbal">@reazuliqbal</a></p>
+    </footer>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
