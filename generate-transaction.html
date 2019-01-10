@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Steem Multiple Authority Manager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Generate Transaction</h1>
+    <p id="welcome" class="h5 mt-5 mb-5 text-center"></p>
+
+    <div class="row">
+      <div class="offset-md-2 col-md-8">
+
+        <div class="alert" id="feedback"></div>
+
+        <form id="generate-transaction">
+          <div class="form-group">
+            <label for="op_type">Operation Type</label>
+            <select name="op_type" id="op_type" class="form-control" required>
+              <option value="">Select an operation</option>
+              <option value="vote">Vote</option>
+              <option value="transfer">Transfer</option>
+              <option value="delegate_vesting_shares">Delegate SP</option>
+            </select>
+          </div>
+
+          <div id="operation"></div>
+
+          <div class="form-group">
+            <label for="wif">WIF</label>
+            <input type="password" name="wif" id="wif" class="form-control" required>
+          </div>
+
+          <button class="btn btn-primary">Generate</button>
+        </form>
+
+        <div class="mt-5">
+          <label for="">Transaction</label>
+          <textarea id="output" class="form-control" rows="10"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p class="small">Disclaimer: I cannot be held responsible for any misuse of this tool or any harm that may occur to your account by using this tool.</p>
+      <p>Brought to you by <a href="https://steemit.com/@reazuliqbal">@reazuliqbal</a></p>
+    </footer>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
