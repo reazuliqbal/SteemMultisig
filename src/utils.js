@@ -1,5 +1,57 @@
 const dsteem = require('dsteem');
 
+const ops = {
+  // Name Label Type Placeholder/Options Required
+  transfer: [
+    ['from', 'From', 'text', '', true],
+    ['to', 'To', 'text', '', true],
+    ['amount', 'Amount', 'text', '1 STEEM', true],
+    ['memo', 'Memo', 'text', '', false],
+  ],
+  delegate_vesting_shares: [
+    ['delegator', 'Delegator', 'text', '', true],
+    ['delegatee', 'Delegatee', 'text', '', true],
+    ['sp', 'Steem Power', 'number', '', true],
+  ],
+  transfer_to_vesting: [
+    ['from', 'From', 'text', '', true],
+    ['to', 'To', 'text', '', true],
+    ['amount', 'Amount', 'number', '100', true],
+  ],
+  withdraw_vesting: [
+    ['account', 'Account', 'text', '', true],
+    ['sp', 'Steem Power', 'number', '100', true],
+  ],
+  account_witness_vote: [
+    ['account', 'Account', 'text', '', true],
+    ['witness', 'Witness', 'text', '', true],
+    ['approve', 'Approve', 'select', ['Yes', 'No'], true],
+  ],
+};
+
+const generateHTML = (op) => {
+  let html = '<div class="row form-group">';
+  ops[op].forEach((e) => {
+    html += `<div class="com-sm-2 col-md-4"><label>${e[1]}</label>`;
+
+    if (e[2] === 'text' || e[2] === 'number') {
+      html += `<input type="${e[2]}" name="${e[0]}" class="form-control" placeholder="${e[3]}"${(e[4]) ? ' required' : ''}>`;
+    } else if (e[2] === 'select') {
+      html += `<select name="${e[0]}" class="form-control">`;
+      e[3].forEach((v) => {
+        html += `<option value="${v.toLowerCase()}">${v}</option>`;
+      });
+      html += '</select>';
+    }
+
+    html += '</div>';
+  });
+
+  html += '</div>';
+
+  return html;
+};
+
 // Helper function to parse JSON operation data and output in text
 const parseOperations = (operations) => {
   const msg = [];
@@ -58,6 +110,7 @@ const getSigners = (transaction) => {
 };
 
 module.exports = {
+  generateHTML,
   generateTrx,
   getSigners,
   parseOperations,

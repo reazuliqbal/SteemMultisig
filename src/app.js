@@ -1,10 +1,13 @@
 const $ = require('jquery');
 const dsteem = require('dsteem');
 const { auth } = require('steem');
+const regeneratorRuntime = require('regenerator-runtime/runtime');
 const { generateTrx } = require('./utils');
 
+// Setting global varables
 window.$ = $;
 window.jQuery = $;
+window.regeneratorRuntime = regeneratorRuntime;
 
 require('./gen-transaction');
 require('./sign-transaction');
@@ -18,6 +21,7 @@ let user = localStorage.getItem('user');
 
 if (user) {
   user = JSON.parse(localStorage.getItem('user'));
+  window.user = user;
 
   $('input[name="username"]').val(user.name);
   $('#welcome').html(`Hello, you are logged in as <span class="text-info">@${user.name}</span>. <a href="#" class="text-danger" id="logout">Logout</a>`);
@@ -68,10 +72,15 @@ $(document).ready(async () => {
     const threshold = parseInt($('#threshold').val(), 10);
     const publickeys = $('input[name="publickeys[]"]').map((i, e) => $(e).val()).get();
     const weights = $('input[name="weights[]"]').map((i, e) => parseInt($(e).val(), 10)).get();
+    const accounts = $('input[name="accounts[]"]').map((i, e) => $(e).val()).get();
+    const accountWeights = $('input[name="account_weights[]"]').map((i, e) => parseInt($(e).val(), 10)).get();
     let wif = $('#wif').val();
 
     // Matching keys with the respected weights
     const keyAuths = publickeys.map((k, i) => ([k, weights[i]]));
+
+    // Matching accounts with the respected weights
+    const accountAuths = accounts.map((k, i) => ([k, accountWeights[i]]));
 
     const authority = {
       key_auths: keyAuths,
@@ -87,17 +96,17 @@ $(document).ready(async () => {
 
     switch (type) {
       case 'posting':
-        authority.account_auths = user.posting_account_auth;
+        authority.account_auths = accountAuths;
         operation[1].posting = authority;
         break;
 
       case 'active':
-        authority.account_auths = user.active_account_auth;
+        authority.account_auths = accountAuths;
         operation[1].active = authority;
         break;
 
       case 'owner':
-        authority.account_auths = user.owner_account_auth;
+        authority.account_auths = accountAuths;
         operation[1].owner = authority;
         // Generating owner key for owner update
         wif = (dsteem.PrivateKey.fromLogin(user.name, wif, 'owner')).toString();
@@ -153,6 +162,38 @@ $(document).ready(async () => {
   // Removing additional key field on button click
   $('#remove-key-field').click((e) => {
     const children = $('#keys').children('.form-group');
+
+    if (children.length > 1) {
+      children.last().remove();
+    }
+
+    e.preventDefault();
+  });
+
+  // Adding additional account field on button click
+  $('#add-account-field').click((e) => {
+    const html = `
+    <div class="form-group">
+    <div class="row">
+    <div class="col-sm-8">
+    <label for="accounts">Account</label>
+    <input type="text" name="accounts[]" class="form-control">
+    </div>
+    <div class="col-sm-4">
+    <label for="account_weight">Weight</label>
+    <input type="number" name="account_weights[]" class="form-control" min="1">
+    </div>
+    </div>
+    </div>`;
+
+    $('#accounts').append(html);
+
+    e.preventDefault();
+  });
+
+  // Removing additional key field on button click
+  $('#remove-account-field').click((e) => {
+    const children = $('#accounts').children('.form-group');
 
     if (children.length > 1) {
       children.last().remove();
