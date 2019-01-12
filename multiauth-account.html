@@ -53,6 +53,26 @@
             <button class="btn btn-sm btn-danger" id="remove-key-field">Remove</button>
           </div>
 
+          <div id="accounts">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-8">
+                  <label for="accounts">Account</label>
+                  <input type="text" name="accounts[]" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                  <label for="account_weights">Weight</label>
+                  <input type="number" name="account_weights[]" class="form-control" min="1">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-sm btn-warning" id="add-account-field">Add</button>
+            <button class="btn btn-sm btn-danger" id="remove-account-field">Remove</button>
+          </div>
+
           <div class="form-group">
             <label for="threshold">Weight Threshold</label>
             <input type="number" name="threshold" id="threshold" class="form-control" min="1" required>
